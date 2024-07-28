@@ -50,3 +50,18 @@ index="git_apache"  clientip="128.30.28.58"
 
 
 
+
+<img width="434" alt="스크린샷 2024-07-28 오후 8 01 24" src="https://github.com/user-attachments/assets/3853128d-95a7-41e9-84e4-38ee974c4cff">
+
+<img width="1285" alt="스크린샷 2024-07-28 오후 8 01 39" src="https://github.com/user-attachments/assets/86b00cd4-2309-41a4-9a4b-888843101cc3">
+
+<img width="1404" alt="스크린샷 2024-07-28 오후 8 02 49" src="https://github.com/user-attachments/assets/0370111b-9c58-40d0-8627-100538388dcf">
+
+<img width="638" alt="스크린샷 2024-07-28 오후 8 03 14" src="https://github.com/user-attachments/assets/55690f35-2cb0-4815-acf3-4f04f207f8a5">
+
+<img width="987" alt="스크린샷 2024-07-28 오후 8 04 42" src="https://github.com/user-attachments/assets/ed8fb5d1-7935-439b-a077-9baa55627402">
+
+
+
+
+
