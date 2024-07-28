@@ -36,3 +36,17 @@ index="git_apache"  clientip="128.30.28.58"
 | timechart count by clientip
 ```
 > ![image](https://github.com/hanmin0512/Data_splunk/assets/37041208/5bfb418e-cbf4-4252-8c35-5b9fdc2198b9)
+
+
+
+
+
+===========
+===========
+
+<img width="660" alt="스크린샷 2024-07-28 오후 2 28 04" src="https://github.com/user-attachments/assets/14bf6a6d-f015-4129-85cf-4889f8b0a1be">
+<img width="1115" alt="스크린샷 2024-07-28 오후 2 28 43" src="https://github.com/user-attachments/assets/592694f7-81fd-4430-8e54-7e986e8c2b62">
+<img width="1472" alt="스크린샷 2024-07-28 오후 2 29 15" src="https://github.com/user-attachments/assets/5e13dbd2-b59b-4b25-b93d-65a98a638eff">
+
+
+
