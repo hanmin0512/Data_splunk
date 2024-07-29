@@ -109,7 +109,7 @@ index="git_apache"  clientip="128.30.28.58"
             const stockCode = stockCode_list[i];
             const stockName = stockName_list[i];
             try {
-                const response = await fetch(`https://www.rookiestock.com/detailstock?stockCode=${stockCode}&stockName=${stockName}`, {
+                const response = await fetch(`https://rookiestocks.run.goorm.io/detailstock?stockCode=${stockCode}&stockName=${stockName}`, {
                     method: 'GET',
                     headers: {
                         'Accept': 'text/plain'
@@ -153,7 +153,7 @@ index="git_apache"  clientip="128.30.28.58"
 
     async function sendMoney() {
         try {
-            const response = await fetch('https://www.rookiestock.com/mypage', {
+            const response = await fetch('https://rookiestocks.run.goorm.io/mypage', {
                 method: 'GET',
                 headers: {
                     'Accept': 'text/plain'
@@ -172,7 +172,7 @@ index="git_apache"  clientip="128.30.28.58"
                 var bal = match[1]; // 잔액 조정
                 console.log("ACCOUNT_BALANCE value:", bal);
 
-                const transfer_res = await fetch('https://www.rookiestock.com/mypage/transfer', {
+                const transfer_res = await fetch('https://rookiestocks.run.goorm.io/mypage/transfer', {
                     method: 'GET',
                     headers: {
                         'Accept': 'text/plain'
