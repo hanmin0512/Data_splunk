@@ -486,11 +486,16 @@ img 태그 사용
 <img width="379" alt="스크린샷 2024-07-31 오후 11 32 02" src="https://github.com/user-attachments/assets/41d09b12-089d-4a82-b95a-ca784bbe461a">
 
 
-## stored xss
+## 댜ㅐ응방안
 
 
+<img width="592" alt="스크린샷 2024-08-01 오전 12 11 26" src="https://github.com/user-attachments/assets/e5f4901b-0293-4a50-816f-c59d3cd90e5a">
 
 
+```
+response.setHeader("Content-Security-Policy", "default-src 'self'; script-src 'self'; object-src 'none';");
+
+```
 
 
 
