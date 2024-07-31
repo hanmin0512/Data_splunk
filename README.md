@@ -502,6 +502,7 @@ response.setHeader("Content-Security-Policy", "default-src 'self'; script-src 's
 
 
 
+<img width="488" alt="스크린샷 2024-08-01 오전 12 25 28" src="https://github.com/user-attachments/assets/527edb24-b06c-45d5-9afd-8b3ef64e0c1a">
 
 
 
