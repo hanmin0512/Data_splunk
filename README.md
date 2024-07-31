@@ -466,15 +466,27 @@ async function ajaxSend(RSAModulus, RSAExponent, user_nm, PRICE) {
 
 
 
+========
+## DOM-XSS
+<img width="859" alt="스크린샷 2024-07-31 오후 11 20 36" src="https://github.com/user-attachments/assets/5e9aafc6-3b53-4043-93cf-97534f26cc9a">
+
+<img width="446" alt="스크린샷 2024-07-31 오후 11 20 42" src="https://github.com/user-attachments/assets/438a01dc-a92c-4de4-baf5-fec1b248341d">
+
+<img width="390" alt="스크린샷 2024-07-31 오후 11 20 53" src="https://github.com/user-attachments/assets/c9d57397-0b23-4ef0-9724-7da4c7abff9f">
 
 
+## reflected xss
+
+<img width="656" alt="스크린샷 2024-07-31 오후 11 24 23" src="https://github.com/user-attachments/assets/4028ffe3-8bcf-4975-8f8e-69747dff648e">
+
+<img width="398" alt="스크린샷 2024-07-31 오후 11 24 37" src="https://github.com/user-attachments/assets/9e6b694c-f1ea-4887-a4ab-67ec676d30f7">
+
+img 태그 사용
+<img width="773" alt="스크린샷 2024-07-31 오후 11 31 52" src="https://github.com/user-attachments/assets/9459a64e-43f0-484f-861d-4b36bc3c67b3">
+<img width="379" alt="스크린샷 2024-07-31 오후 11 32 02" src="https://github.com/user-attachments/assets/41d09b12-089d-4a82-b95a-ca784bbe461a">
 
 
-
-
-
-
-
+## stored xss
 
 
 
