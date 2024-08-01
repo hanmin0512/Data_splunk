@@ -506,6 +506,28 @@ response.setHeader("Content-Security-Policy", "default-src 'self'; script-src 's
 
 
 
+```
+<library>
+    <hero>
+        <name>Superman</name>
+        <genre>Action</genre>
+        <movie>Man of Steel</movie>
+    </hero>
+    <hero>
+        <name>Batman</name>
+        <genre>Action</genre>
+        <movie>The Dark Knight</movie>
+        <movie>Batman Begins</movie>
+    </hero>
+    <hero>
+        <name>Wonder Woman</name>
+        <genre>Action</genre>
+        <movie>Wonder Woman</movie>
+    </hero>
+</library>
+
+```
+
 
 
 
